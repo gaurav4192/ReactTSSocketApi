@@ -53,6 +53,15 @@ io.on('connection',(socket)=>{
             });
             console.log('messageJson==>', savedMessage);
             io.to(conversationId).emit('newMessage', savedMessage);
+
+            const updateMessage=JSON.parse(savedMessage);
+
+            // io.emit('conversationUpdated',{
+            //     conversationId,
+            //     lastMessage: updateMessage.content,
+            //     lastMessageTime: updateMessage.created_at
+            // })
+            io.to(conversationId).emit('conversationUpdated', savedMessage);
         }
         catch(err)
         {
