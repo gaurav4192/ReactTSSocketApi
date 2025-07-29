@@ -5,6 +5,8 @@ import { json } from "body-parser";
  import { Server } from "socket.io";
 
 import conversationsRoutes from'./routes/conversationsRoutes';
+
+import contactsRoutes from'./routes/contactRoutes';
 import messagesRoutes from './routes/messagesRoutes'
 import { Socket } from "dgram";
 import { saveMessage } from "./controller/messageController";
@@ -29,6 +31,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/auth', authRoutes);
 app.use('/conversations', conversationsRoutes);
 app.use('/messages', messagesRoutes);
+app.use('/contacts', contactsRoutes);
 
 
 io.on('connection',(socket)=>{
